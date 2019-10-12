@@ -14,7 +14,7 @@ class Deck {
         // this.draw = draw //return a random card from the cards array
         this.getDeck()
     }
-    
+
     getDeck() {
         const cardValue = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K','A'];
         const suits = ['hearts', 'spades', 'diamonds', 'clubs'];
@@ -40,4 +40,21 @@ class Deck {
         }
         this.cards = shuffledDeck;
     }
-} 
+}
+
+class Player{
+    constructor(playerName){
+      this.playerName = playerName;
+    }
+  }
+  
+    const gameDeck = new Deck()
+    // console.log(gameDeck.cards)
+    gameDeck.shuffleGame();
+    // console.log(gameDeck.cards)
+  
+    let player1 = gameDeck.cards.slice(0,26)
+    let player2 = gameDeck.cards.slice(26,52)
+    // console.log('player 1 has ', player1.length, ' cards')
+    // console.log(player2)
+    console.log(player1[0])
