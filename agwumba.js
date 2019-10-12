@@ -46,7 +46,28 @@ class Player{
     constructor(playerName){
       this.playerName = playerName;
     }
-  }
+}
+
+class Game{ 
+    constructor(){
+      this.players = [] //amount of players in the game
+      // this.getRounds() //amount of rounds played. i know i'll have to use a while loop to loop around the function that will start the game 
+      // this.getWinner() //this will give us the winner of the game. its either, we use a function to get winner or we assign a value to winner and equate is to this.winner.
+    }
+  
+    logPlayer(player){
+      if (this.players.length < 2){
+        this.players.push(player);
+      }
+      else{
+        console.log("Only the chosen few can partake of this sacred game!")
+      }
+    }
+}
+
+// class Randoms{
+
+// }
   
     const gameDeck = new Deck()
     // console.log(gameDeck.cards)
