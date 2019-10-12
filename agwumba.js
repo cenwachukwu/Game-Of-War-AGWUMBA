@@ -14,8 +14,9 @@ class Deck {
         // this.draw = draw //return a random card from the cards array
         this.getDeck()
     }
+    
     getDeck() {
-        const cardValue = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        const cardValue = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K','A'];
         const suits = ['hearts', 'spades', 'diamonds', 'clubs'];
         const ranking = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
         for (let i = 0; i < suits.length; i++) {
@@ -28,4 +29,15 @@ class Deck {
     
     }
     // const gameDeck = new Deck()
+
+    shuffleGame() {
+        var shuffledDeck = []
+        for (let i = 0; i < 52; i++) {
+          var deckSize = this.cards.length;
+          var randomNumber = Math.floor(Math.random() * deckSize);
+          var shuffledCard = this.cards.splice(randomNumber, 1)[0];
+          shuffledDeck.push(shuffledCard);
+        }
+        this.cards = shuffledDeck;
+    }
 } 
