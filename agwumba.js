@@ -24,11 +24,9 @@ class Deck {
             const newCard = new Card(cardValue[j], suits[i], ranking[j])
             this.cards.push(newCard);
           }
-          // return ('newCard')
+        //   return ('newCard')
         }
-    
     }
-    // const gameDeck = new Deck()
 
     shuffleGame() {
         var shuffledDeck = []
@@ -42,40 +40,85 @@ class Deck {
     }
 }
 
-class Player{
-    constructor(playerName){
-      this.playerName = playerName;
-    }
-}
 
 class Game{ 
     constructor(){
-      this.players = [] //amount of players in the game
-      // this.getRounds() //amount of rounds played. i know i'll have to use a while loop to loop around the function that will start the game 
-      // this.getWinner() //this will give us the winner of the game. its either, we use a function to get winner or we assign a value to winner and equate is to this.winner.
+      this.player1 = []
+      this.player2 = []
+      this.dealCards()
     }
-  
-    logPlayer(player){
-      if (this.players.length < 2){
-        this.players.push(player);
-      }
-      else{
-        console.log("Only the chosen few can partake of this sacred game!")
-      }
+
+    dealCards() {
+        this.player1 = gameDeck.cards.slice(0,26)
+        this.player2 = gameDeck.cards.slice(26,52)
+        return (this.player1, this.player2)
+    }
+
+    startGame() {
+        gameDeck.length = 52;
+        while (gameDeck.length > 0){
+            let cardPlay1 = this.player1.shift()
+            console.log(cardPlay1)
+            let cardPlay2 = this.player2.shift()
+            console.log(cardPlay2)
+
+            if (cardPlay1.ranking > cardPlay2.ranking){
+                this.player1.push(cardPlay1, cardPlay2)
+                console.log ('Player 1 has won this round')
+            }
+            else if (cardPlay2.ranking > cardPlay1.ranking) {
+                this.player2.push(cardPlay1, cardPlay2)
+                console.log ('Player 2 has won this round')
+            }
+
+            else if (cardPlay2.ranking = cardPlay1.ranking) {
+                cardPlay1 = this.player1.splice(0, 5);
+                cardPlay2 = this.player2.splice(0, 5);
+                console.log (cardPlay2)
+                if (cardPlay2[4].ranking > cardPlay1[4].ranking){
+                    this.player2.push(cardPlay1, cardPlay2)
+                    console.log('Player 2 has won this round')
+                }
+                else{
+                    this.player1.push(cardPlay1, cardPlay2)
+                    console.log('Player 1 has won this round')
+                }
+            }
+
+            // else {
+            //     console.log ('I think you just beat the game')//splice//pop//concat 3 cards to cardplay 1 and 2, then do that for the//
+            //     //the fourth card and it's the fouth card that will be compared, as we have coompared the other//
+            //     //guys//
+            // }
+            gameDeck.length--;
+        }
+    }
+
+    endGame() {
+        if (playGame.player1.length > playGame.player2.length) {
+            console.log(`Player 1 has ${playGame.player1.length} cards, while player 2 has ${playGame.player2.length} cards`)
+            console.log('Player 1 has vanquished player 2')
+        }
+        else {
+            console.log(`Player 2 has ${playGame.player2.length} cards, while player 1 has ${playGame.player1.length} cards`)
+            console.log('Player 2 has vanquished player 1')
+        }
     }
 }
+const gameDeck = new Deck()
+// // class Randoms{
+console.log(gameDeck.cards)
+gameDeck.shuffleGame();
+console.log(gameDeck.cards)
+const playGame = new Game()
+playGame.dealCards();
+console.log(playGame.player1)
+console.log(playGame.player2)
+playGame.startGame();
+playGame.endGame();
 
-// class Randoms{
+// // let player1 = gameDeck.cards.slice(0,26)
+// // let player2 = gameDeck.cards.slice(26,52)
+// // console.log('player 1 has ', player1.length, ' cards')
 
-// }
-  
-    const gameDeck = new Deck()
-    // console.log(gameDeck.cards)
-    gameDeck.shuffleGame();
-    // console.log(gameDeck.cards)
-  
-    let player1 = gameDeck.cards.slice(0,26)
-    let player2 = gameDeck.cards.slice(26,52)
-    // console.log('player 1 has ', player1.length, ' cards')
-    // console.log(player2)
-    console.log(player1[0])
+// console.log(player1[0])
